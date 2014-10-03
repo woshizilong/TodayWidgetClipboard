@@ -8,8 +8,10 @@
 
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
+#import "ViewController.h"
 
 @interface TodayViewController () <NCWidgetProviding>
+@property (strong, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -18,11 +20,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSUserDefaults *getSaved = [NSUserDefaults standardUserDefaults];
+    self.textLabel.text = [getSaved objectForKey:@"text"];
+}
+- (IBAction)pasteTextFromClipboard:(UIButton *)sender {
+    self.textLabel.text = [UIPasteboard generalPasteboard].string;
+    NSUserDefaults *toSave = [NSUserDefaults standardUserDefaults];
+    [toSave setObject:self.textLabel.text forKey:@"text"];
+}
+- (IBAction)copyTextToClipboard:(UIButton *)sender {
+    [UIPasteboard generalPasteboard].string = self.textLabel.text;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/*- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.) {
+        [textField resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}*/
+
+-(UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets{
+    return UIEdgeInsetsZero;
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {

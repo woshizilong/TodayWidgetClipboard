@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *yourTextField;
+@property (strong, nonatomic) NSString *stringToWidget;
 
 @end
 
