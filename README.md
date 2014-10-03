@@ -5,7 +5,8 @@ This is my very first try with widgets, it is a simple Clipboard that is managed
 
 It stores the text in a NSUserDefaults value, and retrieves it when needed.
 
-![alt text](/Users/polquintana/Xcode/MyFirstTodayExtension/screenshot.png "Screenshot")
+![alt text][id] 
+[id]: http://s30.postimg.org/3swupw7kx/screenshot.png "Screenshot"
 
 ___
 
